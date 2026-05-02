@@ -1,0 +1,306 @@
+If-Else based Chatbot
+Basic NLP
+Text preprocessing
+Vectorization
+Logistic Regression
+Machine Learning from Scratch
+Save and load model
+Chat application with Streamlit
+
+Word Embeddings
+- Word2Vec
+- GloVe
+
+
+
+What is a Word Embedding ?
+- Dense vector representation of a word that captures meaning
+
+Word2Vec
+- Technique in NLP used to represent words as dense numerical vector
+- developed by Google in 2013
+- it allows machines to understand the semantic relationship between words by positioning similar words together
+
+In TF-IDF:
+- it treats words as independent tokens
+- no semantic understanding
+
+TF-IDF does not know:
+car = automobile
+laptop = electronic
+happy = joyful
+king = queen
+
+We need a way to represent words based on meaning, not count
+
+Core idea behind Word2Vec:
+- Words that appear in similar context have similar meanings
+- This is known as Distributional Hypothesis
+
+
+Word2Vec Architecture
+- Two primary model architecture:
+    - CBOW
+    - Skip-Gram
+
+CBOW - Continuous Bag of Words
+- this model predict a target word based on its surronding context words. Generally faster for frequent words.
+Input: I am learning _____ intelligence
+Predict: artificial
+
+Skip-Gram:
+- using a single word to predict the surronding context words. Generally faster for infrequent words
+Input: intelligence
+Predict: artificial, human, machine
+
+
+Why this creates meaning ?
+If:
+"happy" appears near joy, smile, fun
+"sad" appears near cry, depressed, pain
+Then:
+Vector positions become different
+
+
+TF-IDF vs Word2Vec
+1.  TF-IDF - Sparse
+    Word2Vec - Dense
+2.  TF-IDF - Count based
+    Word2Vec - Context based
+3.  TF-IDF - Independent words
+    Word2Vec - Related word cluster
+
+
+Sparse Matrix vs Dense Matrix
+1. Data Representation:
+Sparse - Contains mostly zero values
+Dense - Most values are meaningful, non-zero
+2. Storage Method:
+Sparse - Only non-zero elements and their indices are stored, so significant memory
+Dense - Every element, including zero is stored explicitly as 2D array
+3. NLP Use case:
+Sparse - Bag of words like TF-IDF
+Dense - word embeddings like Word2Vec
+
+=======================
+
+GloVe
+Global Vectors for Word Representation
+- developed by Stanford University
+- Unlike Word2Vec (predictive model), GloVe is: count based + matrix factorization model
+
+It combines:
+1. Statistical word co-occurence
+2. Matrix factorization
+3. Linear Algebra
+
+Word2Vec learns embeddings by predicting context. But it:
+- only uses local context window
+- doesn't directly uses global corpus
+
+In order to use full global co-occurence statistics of the corpus, we have GloVe
+
+Main idea behind GloVe is:
+Word-Word co-occurence matrix
+
+Common pretrained GloVe vectors:
+1. glove-wiki-gigaword-50
+2. glove-wiki-gigaword-100
+3. glove-wiki-gigaword-300
+4. glove-twitter-200
+
+==================================
+
+Window Based Modelling
+- As of now we know about word embeddings
+- Embedding give meaning, but models still need context window to make predictions....
+
+Word -> vector (meaning)
+
+NLP tasks are rarely about one single word
+They are actually about surronding words
+So it uses a window
+
+Window is a fixed number of words around a target word
+Example:
+I love machine learning models
+let window_size = 2 
+Target word = machine
+Context window = love machine learning
+
+We are using these vectors to predict something...
+
+Limitation of Window Models:
+1. Fixed window - limited context
+2. Cannot capture long dependency
+
+Example:
+I am from France and I speak fluent _______
+
+That's why we need memory
+
+Embedding -> Window Context -> Need Memory
+= RNN - Recurrent Neural Network
+
+
+Why RNN ?
+Ex- I did not like this movie
+
+["I","did","not","like","this","movie"]
+- treated independently
+
+Core Problem is:
+Language is Sequential + Context dependent
+
+RNN introduces the memory of previous words
+-- Instead of processing whole sentence at once, RNN process one word at a time:
+x1 -> x2 -> x3 -> x4
+At each step:
+- It remembers past information
+
+Step by Step RNN Algo:
+Step-1: Initialize Memory:
+memory = empty
+
+memory is called hidden state
+
+Step-2: Read first word:
+Input: "I"
+RNN reads "I"
+Updates the memory
+memory = understanding of I
+
+Step-3: Read next word:
+Input: "did"
+RNN reads "did"
+Updates the memory
+previous memory = "I"
+current word = "did"
+
+Then it combines both:
+memory = "I did"
+
+Continue processing till last word...
+"like" - it is positive
+But memory also contains "not"
+
+memory = negative sentiment
+
+Algorithm:
+1. Start with empty memory
+2. For each word in the sentence:
+- read the word
+- combine it with previous word
+- Update memory
+3. After last word:
+- Use memory to make prediction
+
+new memory = old memory + new word
+
+Same weights (Wx, Wh) used at every step
+This is called Weight Sharing
+
+Summary of RNN:
+1. Handle sequential data
+2. Maintains memory
+3. Works for text, speech, video, time series
+
+Limitations of RNN:
+1. Cannot handle long term dependencies
+2. Slow - sequential processing
+
+Solution is LSTM (Long short term memory)...
+
+Types of RNN:
+1. One to One - simple architecture like standard ANN: 
+    Example: Image classification - Input one image and get one label like "cat" or "dog"
+2. One to Many - Network takes a single input and generate sequence of outputs
+    Example: Image captioning - Input image and produces a sequence of words.
+3. Many to One - Network takes multiple input and process them to a single output.
+    Example: sentiment analysis, spam classification
+4. Many to Many - Network takes multiple input and generate a sequence of multiple words
+    Example: Translator
+
+
+Key architecture of RNN:
+- Standard RNN often struggle with the "vanishing gradient problem", where they forget information from the distant past.
+That's why we need advanced variants of RNN that uses Gating mechanism:
+- LSTM - Long Short Term Memory
+- GRU - Gated Recurrent Unit
+- BiRNN - Bi-Directional RNN
+- Deep RNN
+
+
+BPTT - Backpropagation Through Time
+- To understand BPTT, think of RNN as a standard deep network that has been unrolled in time. Because the same parameters (W) are used at every step, the gradient must account for entire history of sequences...
+
+1. Forward Pass / Feedforward
+- at every time step, network will perform two main calculations:
+i. Hidden state: Updated using the current input and previous hidden state
+ii. Output: Generated from the current hidden state
+
+2. Total Loss
+The total loss for a sequence of length is the sum of the lossed at each time step
+
+3. Gradient Challenge:
+To update weights, we need partial derivative, using the chain rule we sum the contribution of W at every step.
+For a specific step t, the gradient depends on current state ht, which in turn depends on ht-1, which depends on ht-2, and so on. This creates a chain of multiplication
+
+4. Vanishing Gradient Problem
+If the weights are small, multiplying them repeatedly causes the gradient to shrink exponentially toward zero (Vanishing Gradient). The model stops learning long-term dependencies
+
+
+=================================
+
+LSTM - Long Short Term Memory
+Example: I was watching a movie yesterday with my friends and after a long discussion we realized that movie was bad
+
+Important word = bad
+But it appears very late so RNN may forget it
+
+RNN Problem:
+Memory gets weaker as sequence grows
+
+What LSTM does:
+- What to remember
+- What to forget
+- What to output
+
+LSTM are designed in such a way that avoids long-term dependencies.
+Remembering information for long period of time is practically their default behaviour
+
+Three gates in LSTM:
+1. Forget gate - decides what to remove from memory
+2. Input gate - decides what new information to store
+3. Output gae - decides what to use for prediction
+
+Example: I went to the movie yesterday...
+Word "yesterday" may not matter later -> forget
+
+Example: the movie was amazing
+Store amazing -> important sentiment
+
+Step by Step LSTM Algorithm
+1. Init memory
+memory = empty
+
+2. Read first word
+"I" -> Not important -> Weak memory
+
+3. Read next word - "did"
+Memory updated slightly
+
+4. Read next word - "not"
+Important word - input gate -> store "not"
+
+5. Read next word - "like"
+Now: "like" -> positive
+but: "not" -> negative
+LSTM combine: final meaning = negative
+
+
+LSTM architecture breakdown
+Step-1:
+- decide what information we're going to throw away from cell state
+- decision is being made by sigmoid layer known as "forget gate layer"
+- it looks at ht-1 
