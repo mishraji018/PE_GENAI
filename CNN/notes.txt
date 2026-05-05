@@ -1,0 +1,19 @@
+In the image :
+(100*100)->image dimension  *3(colour channel)= 30000*100 .. input  in image.
+
+ANN is best for without image.
+CNN is better than ANN.
+
+ek image mei s feature extration nikalne  k liye hm CNN ka use krte h. 
+
+Why CNN:
+before CNN: We are using traditional ML
+-We used to extracts the features manually.(edge,shapes).
+-Then we apply model.
+
+CNN solution
+-Automatically learns features from images.
+
+
+Image not be never negative .. so we use relu (rectified linear unit)
+

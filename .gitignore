@@ -10,3 +10,4 @@ node_modules/
 .DS_Store
 *.csv
 *.pkl
+CASE_STUDY_WEATHER_RECOGNITION/archive/
