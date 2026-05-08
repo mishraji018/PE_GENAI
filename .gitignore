@@ -11,3 +11,4 @@ node_modules/
 *.csv
 *.pkl
 CASE_STUDY_WEATHER_RECOGNITION/archive/
+CASE_STUDY_WEATHER_RECOGNITION/weather_classification_model.h5
