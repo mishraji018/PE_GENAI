@@ -1,0 +1,124 @@
+{
+  "files": {
+    "ChatBot.ipynb": [
+      "joblib",
+      "scikit-learn",
+      "nltk"
+    ],
+    "chatBot2.ipynb": [
+      "joblib",
+      "streamlit",
+      "nltk"
+    ],
+    "Day1.py": [
+      "speech_recognition",
+      "requests",
+      "pyttsx3"
+    ],
+    "feedforward.ipynb": [
+      "numpy"
+    ],
+    "IMBD.ipynb": [
+      "pandas",
+      "numpy"
+    ],
+    "LSTM.ipynb": [
+      "tensorflow",
+      "numpy"
+    ],
+    "maths.ipynb": [
+      "scikit-learn",
+      "pandas",
+      "matplotlib",
+      "numpy"
+    ],
+    "mn.ipynb": [
+      "tensorflow",
+      "numpy"
+    ],
+    "nlp1.ipynb": [
+      "scikit-learn"
+    ],
+    "NLP_visualizing_embedding.ipynb": [
+      "gensim",
+      "scikit-learn",
+      "matplotlib",
+      "numpy"
+    ],
+    "NLTK.ipynb": [
+      "nltk"
+    ],
+    "Task.ipynb": [
+      "nltk"
+    ],
+    "Tenserflow.ipynb": [
+      "tensorflow",
+      "matplotlib"
+    ],
+    "window_based_intent_predictor.ipynb": [
+      "gensim",
+      "nltk",
+      "numpy"
+    ],
+    "CASE_STUDY_WEATHER_RECOGNITION\\01.ipynb": [
+      "tensorflow",
+      "matplotlib",
+      "numpy"
+    ],
+    "chatbot-webapp\\app.py": [
+      "streamlit"
+    ],
+    "chatbot-webapp\\predict.py": [
+      "joblib",
+      "nltk"
+    ],
+    "CNN\\CNN_basic.ipynb": [
+      "tensorflow",
+      "matplotlib"
+    ],
+    "CNN\\pretrainedmodelMSIT.ipynb": [
+      "tensorflow"
+    ],
+    "CNN\\pretrainedmodelMSIT_weather.ipynb": [
+      "tensorflow"
+    ],
+    "CNN\\weather_test_from_01.py": [
+      "opencv-python",
+      "tensorflow",
+      "numpy"
+    ],
+    "Image Processing\\Document_Scanner.ipynb": [
+      "opencv-python",
+      "matplotlib",
+      "numpy"
+    ],
+    "Image Processing\\face_detaction.py": [
+      "opencv-python",
+      "mediapipe"
+    ],
+    "Image Processing\\face_detaction_1.py": [
+      "opencv-python",
+      "mediapipe"
+    ],
+    "Image Processing\\face_detaction_2_sunglasses_filter.py": [
+      "opencv-python",
+      "mediapipe",
+      "numpy"
+    ],
+    "Image Processing\\image_capture.ipynb": [
+      "opencv-python",
+      "yt_dlp"
+    ],
+    "Image Processing\\image_read.ipynb": [
+      "opencv-python",
+      "matplotlib"
+    ],
+    "word2Vec\\day1.ipynb": [
+      "nltk",
+      "gensim"
+    ],
+    "word2Vec\\Pretrained_embeddings.ipynb": [
+      "gensim"
+    ]
+  }
+}

@@ -2,7 +2,10 @@ import cv2
 import tensorflow as tf
 import numpy as np
 
-model=tf.keras.models.load_model("weather_classification_model.h5")
+import os
+script_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(script_dir, "..", "CASE_STUDY_WEATHER_RECOGNITION", "weather_classification_model.h5")
+model=tf.keras.models.load_model(model_path)
 print("Model loaded successfully")
 
 
